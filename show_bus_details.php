@@ -1,8 +1,7 @@
 <?php 
  
  /*
- * Created by Belal Khan
- * website: www.simplifiedcoding.net 
+ * Created by BIlal Khan
  * Retrieve Data From MySQL Database in Android
  */
  
@@ -23,14 +22,14 @@
  
  //creating a query
  $stmt = $conn->prepare("SELECT id, bus_number, bus_total_seats, bus_available_seats, bus_route, bus_leaving_time
- ,bus_reaching_time,bus_driver_name,bus_ticketchecker_name,bus_rating,bus_break_time,bus_company FROM bus_detail;");
+ ,bus_reaching_time,bus_driver_name,bus_ticketchecker_name,bus_rating,bus_break_time,bus_company,bus_image FROM bus_detail;");
  
  //executing the query 
  $stmt->execute();
  
  //binding results to the query 
  $stmt->bind_result($id, $number, $total_seats, $available_seats, $bus_route, $bus_leaving_time,
- $bus_reaching_time,$bus_driver_name,$bus_ticketchecker_name,$bus_rating,$bus_break_time,$bus_company);
+ $bus_reaching_time,$bus_driver_name,$bus_ticketchecker_name,$bus_rating,$bus_break_time,$bus_company,$bus_image);
  
  $products = array(); 
  
@@ -49,6 +48,7 @@
  $temp['bus_rating'] = $bus_rating;
  $temp['bus_break_time'] = $bus_break_time; 
  $temp['bus_company'] = $bus_break_time; 
+ $temp['bus_image'] = $bus_image;
  array_push($products, $temp);
  }
  

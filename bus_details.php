@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] =='POST'){
     $bus_rating = $_POST['bus_rating'];
     $bus_break_time = $_POST['bus_break_time'];
     $bus_company = $_POST['bus_company'];
+    $day = $_POST['day'];
 
     
 
@@ -23,9 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] =='POST'){
 
     $sql = "INSERT INTO bus_detail (bus_number, bus_total_seats, bus_available_seats,
     bus_route,bus_leaving_time,bus_reaching_time,bus_driver_name,bus_ticketchecker_name,
-    bus_rating,bus_break_time,bus_company) 
+    bus_rating,bus_break_time,bus_company,day) 
     VALUES ('$number', '$total_seats', '$available_seats' ,'$bus_route','$bus_leaving_time','$bus_reaching_time'
-    ,'$bus_driver_name','$bus_ticketchecker_name','$bus_rating','$bus_break_time','$bus_company')";
+    ,'$bus_driver_name','$bus_ticketchecker_name','$bus_rating','$bus_break_time','$bus_company' ,'$day')";
 
     if ( mysqli_query($con, $sql) ) {
         $result["success"] = "1";
