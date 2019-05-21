@@ -21,22 +21,23 @@
  }
  
  //creating a query
- $stmt = $conn->prepare("SELECT id, bus_number, bus_total_seats, bus_available_seats, bus_route, bus_leaving_time
- ,bus_reaching_time,bus_driver_name,bus_ticketchecker_name,bus_rating,bus_break_time,bus_company,bus_image FROM bus_detail;");
+ $stmt = $conn->prepare("SELECT bus_number, bus_total_seats, bus_available_seats, bus_route, bus_leaving_time
+ ,bus_reaching_time,bus_driver_name,bus_ticketchecker_name,bus_rating,bus_break_time,bus_company,bus_image,day 
+ FROM bus_detail;");
  
  //executing the query 
  $stmt->execute();
  
  //binding results to the query 
- $stmt->bind_result($id, $number, $total_seats, $available_seats, $bus_route, $bus_leaving_time,
- $bus_reaching_time,$bus_driver_name,$bus_ticketchecker_name,$bus_rating,$bus_break_time,$bus_company,$bus_image);
+ $stmt->bind_result($number, $total_seats, $available_seats, $bus_route, $bus_leaving_time,
+ $bus_reaching_time,$bus_driver_name,$bus_ticketchecker_name,$bus_rating,$bus_break_time,$bus_company,
+ $bus_image,$day);
  
  $products = array(); 
  
  //traversing through all the result 
  while($stmt->fetch()){
  $temp = array();
- $temp['id'] = $id; 
  $temp['bus_number'] = $number; 
  $temp['bus_total_seats'] = $total_seats; 
  $temp['bus_available_seats'] = $available_seats; 
@@ -47,8 +48,10 @@
  $temp['bus_ticketchecker_name'] = $bus_ticketchecker_name;
  $temp['bus_rating'] = $bus_rating;
  $temp['bus_break_time'] = $bus_break_time; 
- $temp['bus_company'] = $bus_break_time; 
+ $temp['bus_company'] = $bus_company; 
  $temp['bus_image'] = $bus_image;
+ $temp['day'] = $day;
+
  array_push($products, $temp);
  }
  
