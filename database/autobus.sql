@@ -1,9 +1,9 @@
--- phpMyAdmin SQL
+-- phpMyAdmin SQL Dump
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2019 at 09:06 AM
+-- Generation Time: May 21, 2019 at 08:15 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -61,21 +61,19 @@ CREATE TABLE `bus_detail` (
   `bus_ticketchecker_name` text NOT NULL,
   `bus_rating` text NOT NULL,
   `bus_break_time` datetime NOT NULL,
-  `bus_company` text NOT NULL
+  `bus_company` text NOT NULL,
+  `day` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bus_detail`
 --
 
-INSERT INTO `bus_detail` (`id`, `bus_number`, `bus_total_seats`, `bus_available_seats`, `bus_image`, `tags`, `bus_route`, `bus_leaving_time`, `bus_reaching_time`, `bus_driver_name`, `bus_ticketchecker_name`, `bus_rating`, `bus_break_time`, `bus_company`) VALUES
-(4, 'GHJ-987', '70', '20', '', '', 'Grw To Lahore', '2019-04-22 10:20:00', '2019-04-22 10:50:00', 'Azad', 'Asad', '5', '2019-04-22 10:40:00', 'Daewo'),
-(5, 'bilal', 'bilal', 'bilal', '', '', 'bilal', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'bilal', 'bilal', 'bilal', '0000-00-00 00:00:00', 'bilal'),
-(6, 'GJN-1234', '70', '50', '', '', 'Lahore To Karachi', '2019-05-22 07:20:00', '0000-00-00 00:00:00', 'Azad', 'Asaf', '5', '2019-05-22 07:40:00', 'Daewo'),
-(7, '', '', '', 'b5e2d67b9168bf0d4274d853fb676648.jpg', 'Bus', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', '0000-00-00 00:00:00', ''),
-(8, 'Bilal', 'bil', 'hkk', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', '0000-00-00 00:00:00', 'Bilal'),
-(9, '', '', '', '1556545264540.png', 'Wfg', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', '0000-00-00 00:00:00', ''),
-(10, '', '', '', '1556548789953.png', 'Bilal', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', '0000-00-00 00:00:00', '');
+INSERT INTO `bus_detail` (`id`, `bus_number`, `bus_total_seats`, `bus_available_seats`, `bus_image`, `tags`, `bus_route`, `bus_leaving_time`, `bus_reaching_time`, `bus_driver_name`, `bus_ticketchecker_name`, `bus_rating`, `bus_break_time`, `bus_company`, `day`) VALUES
+(7, 'ghj455', '80', '70', 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Leyland_National_Greenway_nearside.jpg', 'Bus', 'Lahore to Pindi', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'asad', 'aaaa', '4', '0000-00-00 00:00:00', 'dewo', 'Monday'),
+(9, '', '', '', 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/London_Transport_RF503.JPG/800px-London_Transport_RF503.JPG', 'Wfg', 'Lahore to Pindi', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', '0000-00-00 00:00:00', 'Niazi', 'Thursday'),
+(10, '', '', '', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/London_Bus_route_139_A.jpg/800px-London_Bus_route_139_A.jpg', 'Bilal', 'Lahore to Pindi', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', '0000-00-00 00:00:00', 'Niazi', 'Tuesday'),
+(13, '', '', '', 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Big_Bus_Company_10-5-07.jpg/800px-Big_Bus_Company_10-5-07.jpg', 'Image', 'Lahore to Pindi', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', '0000-00-00 00:00:00', 'Niazi', 'Wednesday');
 
 -- --------------------------------------------------------
 
@@ -180,7 +178,7 @@ ALTER TABLE `admin_account`
 -- AUTO_INCREMENT for table `bus_detail`
 --
 ALTER TABLE `bus_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `driver_account`
