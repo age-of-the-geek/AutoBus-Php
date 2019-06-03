@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] =='POST'){
 
     $number = $_POST['bus_number'];
     $tk_checker_uname = $_POST['tk_checker_uname'];
-    $tk_checker_password = $_POST['tk_checker_ password'];
+    $tk_checker_password = $_POST['tk_checker_password'];
     $tk_checker_id = $_POST['tk_checker_id'];
     $tk_checker_phone = $_POST['tk_checker_phone'];
 
