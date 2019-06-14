@@ -27,16 +27,48 @@
  case 'uploadpic':
  
  //first confirming that we have the image and tags in the request parameter
- if(isset($_FILES['pic']['name']) && isset($_POST['tags'])){
+ if(isset($_FILES['pic']['name']) 
+ && isset($_POST['bus_number'])
+ && isset($_POST['bus_total_seats'])
+ && isset($_POST['bus_available_seats'])
+ && isset($_POST['bus_from'])
+ && isset($_POST['bus_to'])
+ && isset($_POST['bus_leaving_time'])
+ && isset($_POST['bus_reaching_time'])
+ && isset($_POST['bus_driver_name'])
+ && isset($_POST['bus_ticketchecker_name'])
+ && isset($_POST['bus_rating'])
+ && isset($_POST['bus_break_time'])
+ && isset($_POST['bus_company'])
+ && isset($_POST['day'])
+ ){
  
  //uploading file and storing it to database as well 
  try{
  move_uploaded_file($_FILES['pic']['tmp_name'], UPLOAD_PATH . $_FILES['pic']['name']);
- $stmt = $conn->prepare("INSERT INTO bus_detail (bus_image, tags) VALUES (?,?)");
- $stmt->bind_param("ss", $_FILES['pic']['name'],$_POST['tags']);
+ $stmt = $conn->prepare("INSERT INTO bus_detail (bus_image, bus_number, bus_total_seats
+ ,bus_available_seats,bus_from,bus_to,bus_leaving_time,bus_reaching_time
+ ,bus_driver_name,bus_ticketchecker_name,bus_rating,bus_break_time
+ ,bus_company,day) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+ $stmt->bind_param("ssssssssssssss"
+ ,$_FILES['pic']['name']
+ ,$_POST['bus_number']
+ ,$_POST['bus_total_seats']
+ ,$_POST['bus_available_seats']
+ ,$_POST['bus_from']
+ ,$_POST['bus_to']
+ ,$_POST['bus_leaving_time']
+ ,$_POST['bus_reaching_time']
+ ,$_POST['bus_driver_name']
+ ,$_POST['bus_ticketchecker_name']
+ ,$_POST['bus_rating']
+ ,$_POST['bus_break_time']
+ ,$_POST['bus_company']
+ ,$_POST['day']
+);
  if($stmt->execute()){
  $response['error'] = false;
- $response['message'] = 'File uploaded successfully';
+ $response['message'] = 'Data Uploaded Successfully';
  }else{
  throw new Exception("Could not upload file");
  }
@@ -59,9 +91,9 @@
  $server_ip = gethostbyname(gethostname());
  
  //query to get images from database
- $stmt = $conn->prepare("SELECT bus_image, tags FROM bus_detail");
+ $stmt = $conn->prepare("SELECT bus_image, tags, name FROM bus_detail");
  $stmt->execute();
- $stmt->bind_result( $image, $tags);
+ $stmt->bind_result( $image, $tags, $name);
  
  $images = array();
  
@@ -71,6 +103,8 @@
  $temp = array();
  $temp['image'] = 'http://' . $server_ip . '/AutoBus/'. UPLOAD_PATH . $image; 
  $temp['tags'] = $tags; 
+ $temp['name'] = $name; 
+
  
  array_push($images, $temp);
  }

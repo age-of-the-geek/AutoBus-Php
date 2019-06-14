@@ -21,7 +21,7 @@
  }
  
  //creating a query
- $stmt = $conn->prepare("SELECT bus_number, bus_total_seats, bus_available_seats, bus_route, bus_leaving_time
+ $stmt = $conn->prepare("SELECT bus_number, bus_total_seats, bus_available_seats, bus_from, bus_to, bus_leaving_time
  ,bus_reaching_time,bus_driver_name,bus_ticketchecker_name,bus_rating,bus_break_time,bus_company,bus_image,day 
  FROM bus_detail;");
  
@@ -29,7 +29,7 @@
  $stmt->execute();
  
  //binding results to the query 
- $stmt->bind_result($number, $total_seats, $available_seats, $bus_route, $bus_leaving_time,
+ $stmt->bind_result($number, $total_seats, $available_seats, $bus_from, $bus_to, $bus_leaving_time,
  $bus_reaching_time,$bus_driver_name,$bus_ticketchecker_name,$bus_rating,$bus_break_time,$bus_company,
  $bus_image,$day);
  
@@ -41,7 +41,8 @@
  $temp['bus_number'] = $number; 
  $temp['bus_total_seats'] = $total_seats; 
  $temp['bus_available_seats'] = $available_seats; 
- $temp['bus_route'] = $bus_route; 
+ $temp['bus_from'] = $bus_from;
+ $temp['bus_to'] = $bus_to;
  $temp['bus_leaving_time'] = $bus_leaving_time;
  $temp['bus_reaching_time'] = $bus_reaching_time;
  $temp['bus_driver_name'] = $bus_driver_name;
