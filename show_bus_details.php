@@ -25,18 +25,23 @@
  //getting server ip for building image url 
  $server_ip = gethostbyname(gethostname());
 
+ if($_SERVER['REQUEST_METHOD']=='POST'){
+    //Getting values 
+    $from = $_POST['bus_from'];
+    $to = $_POST['bus_to'];
+
  //creating a query
  $stmt = $conn->prepare("SELECT bus_number, bus_total_seats, bus_available_seats, bus_from, bus_to, bus_leaving_time
- ,bus_reaching_time,bus_driver_name,bus_ticketchecker_name,bus_rating,bus_break_time,bus_company,bus_image,day 
- FROM bus_detail;");
+ ,bus_reaching_time,bus_driver_name,bus_ticketchecker_name,bus_break_time,bus_image,day,
+ ticket_price
+ FROM bus_detail WHERE bus_to='$to' AND bus_from='$from';");
  
  //executing the query 
  $stmt->execute();
  
  //binding results to the query 
  $stmt->bind_result($number, $total_seats, $available_seats, $bus_from, $bus_to, $bus_leaving_time,
- $bus_reaching_time,$bus_driver_name,$bus_ticketchecker_name,$bus_rating,$bus_break_time,$bus_company,
- $bus_image,$day);
+ $bus_reaching_time,$bus_driver_name,$bus_ticketchecker_name,$bus_break_time,$bus_image,$day,$ticket_price);
  
  $products = array(); 
  
@@ -52,16 +57,17 @@
  $temp['bus_reaching_time'] = $bus_reaching_time;
  $temp['bus_driver_name'] = $bus_driver_name;
  $temp['bus_ticketchecker_name'] = $bus_ticketchecker_name;
- $temp['bus_rating'] = $bus_rating;
  $temp['bus_break_time'] = $bus_break_time; 
- $temp['bus_company'] = $bus_company; 
  $temp['bus_image'] = 'http://' . $server_ip . '/AutoBus/'. UPLOAD_PATH . $bus_image;
  $temp['day'] = $day;
+ $temp['ticket_price'] = $ticket_price;
+ 
 
  array_push($products, $temp);
  }
  
  //displaying the result in json format 
  echo json_encode($products);
+ }
 
  ?>

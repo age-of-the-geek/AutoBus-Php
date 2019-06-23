@@ -37,20 +37,19 @@
  && isset($_POST['bus_reaching_time'])
  && isset($_POST['bus_driver_name'])
  && isset($_POST['bus_ticketchecker_name'])
- && isset($_POST['bus_rating'])
  && isset($_POST['bus_break_time'])
- && isset($_POST['bus_company'])
  && isset($_POST['day'])
+ && isset($_POST['ticket_price'])
  ){
  
  //uploading file and storing it to database as well 
  try{
  move_uploaded_file($_FILES['pic']['tmp_name'], UPLOAD_PATH . $_FILES['pic']['name']);
+
  $stmt = $conn->prepare("INSERT INTO bus_detail (bus_image, bus_number, bus_total_seats
  ,bus_available_seats,bus_from,bus_to,bus_leaving_time,bus_reaching_time
- ,bus_driver_name,bus_ticketchecker_name,bus_rating,bus_break_time
- ,bus_company,day) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
- $stmt->bind_param("ssssssssssssss"
+ ,bus_driver_name,bus_ticketchecker_name,bus_break_time,day,ticket_price) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+ $stmt->bind_param("sssssssssssss"
  ,$_FILES['pic']['name']
  ,$_POST['bus_number']
  ,$_POST['bus_total_seats']
@@ -61,10 +60,9 @@
  ,$_POST['bus_reaching_time']
  ,$_POST['bus_driver_name']
  ,$_POST['bus_ticketchecker_name']
- ,$_POST['bus_rating']
  ,$_POST['bus_break_time']
- ,$_POST['bus_company']
  ,$_POST['day']
+ ,$_POST['ticket_price']
 );
  if($stmt->execute()){
  $response['error'] = false;

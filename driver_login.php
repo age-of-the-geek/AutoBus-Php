@@ -26,6 +26,7 @@ $con = OpenCon();
  if(isset($check)){
  //displaying success 
  echo "success";
+ echo json_encode($check);
  }else{
  //displaying failure
  echo "failure";
